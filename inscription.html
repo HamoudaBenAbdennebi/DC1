@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="./images/yahoo_mail.png" alt="">
+    <form onsubmit="return verif()">
+        <div>
+            <label>nom</label>
+            <input type="text" id="name">
+            <input type="text" id="pre">
+        </div>
+        <div>
+            <label>identifiant yahoo</label>
+            <input type="text" id="mail1">
+            <label>@</label>
+            <select name="" id="restmail">
+                <option value="yahoo.fr">yahoo.fr</option>
+                <option value="yahoo.com">yahoo.com</option>
+                <option value="Ymail.com">Ymail.com</option>
+                <option value="Rocketmail.com">Rocketmail.com</option>
+            </select>
+        </div>
+            <div>
+                <label>mot de passe</label>
+                <input type="password" id="passw">
+            </div>
+            <div>
+                <label>confirmer le mot de passe</label>
+                <input type="password" id="repass">
+            </div>
+        <h2>quelques infos personneles</h2>
+        <div>
+            <input type="number" id="jour">
+            <select name="" id="mois">
+                <option value="choisisser"hidden disabled>choisisser</option>
+                <option value="janvier">janvier</option>
+                <option value="fevrier">fevrier</option>
+                <option value="mars">mars</option>
+                <option value="avril">avril</option>
+                <option value="mai">mai</option>
+                <option value="juin">juin</option>
+                <option value="juilier">juilier</option>
+                <option value="aout">aout</option>
+                <option value="sept">sept</option>
+                <option value="oct">oct</option>
+                <option value="nov">nov</option>
+                <option value="dec">dec</option>
+            </select>
+            <input type="number" id="anne">
+        </div>
+        <div>
+            <label for="sexe">sexe</label>
+            <select name="sexe" id="sexe">
+                <option value="choi" hidden disabled>choisisser</option>
+                <option value="male">homme</option>
+                <option value="female">femme</option>
+            </select>
+        </div>
+        <div>
+            <label for="pays">pays de residence</label>
+            <select name="pays" id="pays">
+                <option value="choisisser" hidden disabled>choisisser</option>
+                <option value="tn">tunisie</option>
+                <option value="alg">algerie</option>
+                <option value="fra">france</option>
+                <option value="ita">italie</option>
+            </select>
+        </div>
+        <input type="text" name="num" id="num" placeholder="num de tel">
+        <input type="text" id="secmail" placeholder="mail secondaire">
+        <div>
+            <p>captcha</p>
+            <img src="./images/captcha.png" alt="">
+        </div>
+        <input type="text"placeholder='taper code' id="capt"> <br>
+        <button type="submit">creer mon compte</button>
+    </form>
+    <script>
+        const verif = () =>{
+            var nom = document.getElementById('name').value
+            var prenom = document.getElementById('pre').value
+            if(nom.length >32 || nom.length == 0 || prenom.length >32 || prenom.length == 0){
+                alert('verifier nom et prenom')
+                document.getElementById('name').focus()
+                return false
+            }
+            var mail1 = document.getElementById('mail1').value
+            if(mail1.length>32 || mail1.length<4){
+                alert('verifier identifiant ')
+                document.getElementById('mail1').focus()
+                return false
+            }
+            var passw = document.getElementById('passw').value
+            var repass = document.getElementById('repass').value
+            if(passw.length <6 || passw.length > 32){
+                document.getElementById('passw').focus()
+                alert('verifier mot de passe')
+                return false
+            }
+            if(passw != repass){
+                alert('erreur confirmation mot de passe')
+                document.getElementById('repass').focus()
+                return false
+            }
+            var jour = document.getElementById('jour').value
+            var mois = document.getElementById('mois').value
+            var anne = document.getElementById('anne').value
+            if(isNaN(jour) == true || jour>31 || jour<1 || mois == "" ||mois =='choisisser'||anne>2050 || anne<1950){
+                alert('verifier la date')
+                document.getElementById('jour').focus()
+                return false
+            }
+            var sexe = document.getElementById('sexe').value
+            if(sexe == '' || sexe =='choi'){
+                alert('verifier sexe')
+                document.getElementById('sexe').focus()
+                return false
+            }
+            var pays = document.getElementById('pays').value
+            if(pays == '' || pays =='choisisser'){
+                alert('verifier sexe')
+                document.getElementById('pays').focus()
+                return false
+            }
+            var secmail = document.getElementById('secmail').value
+            if(secmail.indexOf('@')<2){
+                alert('adresse secondaire invisible')
+                document.getElementById('secmail').focus()
+                return false
+            }
+            var capt = document.getElementById('capt').value
+            if(capt != "MAVeHz"){
+                alert('verifier captcha')
+                document.getElementById('capt').focus()
+                return false
+            }
+            var restmail = document.getElementById('restmail').value
+            alert(mail1+"@"+restmail)
+        }
+    </script>
+</body>
+</html>

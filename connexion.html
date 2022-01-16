@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="./images/png-transparent-yemail.png" alt="">
+    <form onsubmit="return verif()">
+        <input type="text" placeholder="nom d'utilisateur" id="nom">
+        <input type="password" name="pass" id="pass" placeholder="mot de passe">
+        <button type="submit">connexion</button>
+    </form>
+    <script>
+        const verif = () =>{
+            var nom = document.getElementById('nom').value
+            if(nom.length == 0 || nom.indexOf('@')<2){
+                alert('le nom dutilisateur es invalide')
+                document.getElementById('nom').focus()
+                return false
+            }
+            var pass = document.getElementById('pass').value
+            if(pass.length < 6 || pass.length >32){
+                alert('verifier mot de passe')
+                document.getElementById('pass').focus()
+                return false
+            }
+        }
+    </script>
+</body>
+</html>
